@@ -1,14 +1,3 @@
-# Quick Access
-<details>
-<summary>Click to expand</summary>
-
-- [Checklist](#checklist)
-	* [New Feature submissions](#new-feature-submissions)
-  * [Testing](#testing)
-- [Change Log](#change-log)
-- [Paying Down Technical Debt](#paying-down-technical-debt)
-</details>
-
 ## Checklist:
 
 * [ ] Merged master (before testing)
