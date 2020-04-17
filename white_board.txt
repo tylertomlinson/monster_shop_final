@@ -16,7 +16,7 @@
 
 Discounts table setup:
 name - to have multiple types of discounts
-percentage_off - amount as interger representing % discounted
+percentage_off - amount as integer representing % discounted
 min_quantity - the quantity that specifies before the discount is triggered
 merchant_id - one(merchant) to many (discounts) relationship
-item_id - will all later if time permits or could be a joins table 
+item_id - will all later if time permits or could be a joins table
