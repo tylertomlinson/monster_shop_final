@@ -1,3 +1,26 @@
+version: 2
+jobs:
+  build:
+    docker:
+    - image: circleci/ruby:2.5.3-stretch-node
+    steps:
+    - checkout
+    - run:
+        name: install bundler
+        command: gem install bundler
+    - run:
+        name: bundle install
+        command: bundle install
+    - run:
+        name: Run RSpec tests
+        command: bundle exec rspec
+workflows:
+  version: 2
+  workflow:
+    jobs:
+    - build
+    - test
+
 version: 2.1
 
 orbs:
