@@ -20,13 +20,9 @@ jobs:
         command: bundle exec rspec
 workflows:
   version: 2
-  workflow:
     jobs:
     - build
-    - test
     - heroku/deploy-via-git: # Use the pre-configured job, deploy-via-git
         filters:
           branches:
             only: master
-
-  
