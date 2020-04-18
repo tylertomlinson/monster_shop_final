@@ -1,21 +1,12 @@
-version: 2
-jobs:
-  build:
-    docker:
-    - image: circleci/ruby:2.5.3-stretch-node
-    steps:
-    - checkout
-    - run:
-        name: install bundler
-        command: gem install bundler
-    - run:
-        name: bundle install
-        command: bundle install
-    - run:
-        name: Run RSpec tests
-        command: bundle exec rspec
+version: 2.1
+
+orbs:
+  heroku: circleci/heroku@0.0.10 # Invoke the Heroku orb
+
 workflows:
-  version: 2
-  workflow:
+  heroku_deploy:
     jobs:
-    - build
+      - heroku/deploy-via-git: # Use the pre-configured job, deploy-via-git
+          filters:
+            branches:
+              only: master
