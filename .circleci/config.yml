@@ -1,4 +1,5 @@
-version: 2
+version: 2.1
+
 jobs:
   build:
     docker:
@@ -21,7 +22,7 @@ workflows:
     - build
     - test
 
-version: 2.1
+
 
 orbs:
   heroku: circleci/heroku@0.0.10 # Invoke the Heroku orb
