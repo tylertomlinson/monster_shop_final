@@ -15,15 +15,18 @@ RSpec.describe "Merchant discount index" do
   it "can see each discount with specific info" do
 
     visit "merchant/discounts/#{@discount_1.id}"
-    
+
     expect(page).to have_content(@discount_1.name)
     expect(page).to have_content(@discount_1.percent_off)
     expect(page).to have_content(@discount_1.min_quantity)
+  end
+
+  it "can have multiple discounts and view each" do
 
     visit "merchant/discounts/#{@discount_2.id}"
 
     expect(page).to have_content(@discount_2.name)
     expect(page).to have_content(@discount_2.percent_off)
     expect(page).to have_content(@discount_2.min_quantity)
- end
+  end
 end
