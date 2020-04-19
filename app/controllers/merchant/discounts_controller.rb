@@ -8,9 +8,7 @@ class Merchant::DiscountsController < Merchant::BaseController
     @discount = curret_discounts
   end
 
-  def new
-    @discount = Discount.new
-  end
+  def new; end
 
   def create
     merchant = current_merchant
@@ -22,6 +20,31 @@ class Merchant::DiscountsController < Merchant::BaseController
       generate_flash(discount)
       render :new
     end
+  end
+
+  def edit
+    @discount = curret_discounts
+  end
+
+  def update
+    @discount = curret_discounts
+
+    if @discount.update(discount_params)
+      flash[:success] = 'Discount updated'
+      redirect_to merchant_discount_path(@discount)
+    else
+      generate_flash(@discount)
+      render :edit
+    end
+  end
+
+  def destroy
+    discount = curret_discounts
+
+    discount.destroy
+
+    flash[:notice] = 'Discount Deleted'
+    redirect_to merchant_discounts_path
   end
 
   private

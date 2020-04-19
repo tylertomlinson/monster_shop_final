@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Create discount' do
-  before :each do
+  before(:each) do
     @merchant_1 = create(:merchant)
     @merchant_2 = create(:merchant)
     @merchant_employee = create(:merchant_employee, merchant: @merchant_1)
