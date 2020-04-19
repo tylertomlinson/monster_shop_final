@@ -12,7 +12,7 @@ RSpec.describe "Merchant discount index" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@merchant_employee)
   end
 
-  it "can see each discount with specific info" do
+  it 'can see each discount with specific info' do
 
     visit "merchant/discounts/#{@discount_1.id}"
 
@@ -21,7 +21,7 @@ RSpec.describe "Merchant discount index" do
     expect(page).to have_content(@discount_1.min_quantity)
   end
 
-  it "can have multiple discounts and view each" do
+  it 'can have multiple discounts and view each' do
 
     visit "merchant/discounts/#{@discount_2.id}"
 
