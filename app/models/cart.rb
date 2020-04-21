@@ -43,4 +43,18 @@ class Cart
   def limit_reached?(item_id)
     count_of(item_id) == Item.find(item_id).inventory
   end
+
+  def applicable_discounts(item_id)
+    item = Item.find(item_id)
+    merchant = Merchant.find(item.merchant_id)
+    merchant.discounts.where("min_quantity <= ?", count_of(item_id)).order(min_quantity: :desc).first.percent_off
+  end
+
+  def discounted_amount(item_id)
+    subtotal_of(item_id) * (100 - applicable_discounts(item_id)) / 100
+  end
+
+  def discounted_subtotal(item_id)
+    discounted_amount(item_id) / count_of(item_id)
+  end
 end

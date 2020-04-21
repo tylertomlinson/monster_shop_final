@@ -63,5 +63,14 @@ RSpec.describe Cart do
 
       expect(@cart.count_of(@giant.id)).to eq(1)
     end
+
+    it '.discounted_subtotal()' do
+
+      @discount_1 = create(:discount, percent_off: 50, min_quantity: 2, merchant: @megan)
+      @discount_1 = create(:discount, percent_off: 100, min_quantity: 2, merchant: @megan)
+      @discount_2 = create(:discount, percent_off: 50, min_quantity: 10, merchant: @megan)
+
+      expect(@cart.discounted_subtotal(@giant.id)).to eq(25.0)
+    end
   end
 end
