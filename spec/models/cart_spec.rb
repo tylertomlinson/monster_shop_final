@@ -64,13 +64,37 @@ RSpec.describe Cart do
       expect(@cart.count_of(@giant.id)).to eq(1)
     end
 
+    it '.applicable_discounts()' do
+      @discount_1 = create(:discount, percent_off: 50, min_quantity: 1, merchant: @megan)
+      @discount_2 = create(:discount, percent_off: 25, min_quantity: 2, merchant: @megan)
+      @discount_3 = create(:discount, percent_off: 10, min_quantity: 3, merchant: @megan)
+
+      expect(@cart.applicable_discounts(@ogre.id)).to eq(50)
+    end
+
     it '.discounted_subtotal()' do
+      @discount_1 = create(:discount, percent_off: 50, min_quantity: 1, merchant: @megan)
+      @discount_2 = create(:discount, percent_off: 25, min_quantity: 2, merchant: @megan)
+      @discount_3 = create(:discount, percent_off: 10, min_quantity: 3, merchant: @megan)
 
-      @discount_1 = create(:discount, percent_off: 50, min_quantity: 2, merchant: @megan)
-      @discount_1 = create(:discount, percent_off: 100, min_quantity: 2, merchant: @megan)
-      @discount_2 = create(:discount, percent_off: 50, min_quantity: 10, merchant: @megan)
+      @discount_1 = create(:discount, percent_off: 50, min_quantity: 1, merchant: @brian)
+      @discount_2 = create(:discount, percent_off: 25, min_quantity: 2, merchant: @brian)
+      @discount_3 = create(:discount, percent_off: 10, min_quantity: 3, merchant: @brian)
 
+      expect(@cart.discounted_subtotal(@ogre.id)).to eq(10.0)
       expect(@cart.discounted_subtotal(@giant.id)).to eq(25.0)
+    end
+
+    it '.grand_total_with_discount' do
+      @discount_1 = create(:discount, percent_off: 50, min_quantity: 1, merchant: @megan)
+      @discount_2 = create(:discount, percent_off: 25, min_quantity: 2, merchant: @megan)
+      @discount_3 = create(:discount, percent_off: 10, min_quantity: 3, merchant: @megan)
+
+      @discount_1 = create(:discount, percent_off: 50, min_quantity: 1, merchant: @brian)
+      @discount_2 = create(:discount, percent_off: 25, min_quantity: 2, merchant: @brian)
+      @discount_3 = create(:discount, percent_off: 10, min_quantity: 3, merchant: @brian)
+
+      expect(@cart.grand_total_with_discount).to eq(60.0)
     end
   end
 end

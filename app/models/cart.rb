@@ -47,14 +47,26 @@ class Cart
   def applicable_discounts(item_id)
     item = Item.find(item_id)
     merchant = Merchant.find(item.merchant_id)
-    merchant.discounts.where("min_quantity <= ?", count_of(item_id)).order(min_quantity: :desc).first.percent_off
+    merchant.discounts.where("min_quantity <= ?", count_of(item_id)).order(min_quantity: :asc).max_by { |discount| discount.percent_off }.percent_off
   end
 
   def discounted_amount(item_id)
+    # require "pry"; binding.pry
     subtotal_of(item_id) * (100 - applicable_discounts(item_id)) / 100
   end
 
   def discounted_subtotal(item_id)
+    # require "pry"; binding.pry
     discounted_amount(item_id) / count_of(item_id)
+  end
+
+  def grand_total_with_discount
+    grand_total = 0.0
+    @contents.each do |item_id, quantity|
+      # require "pry"; binding.pry
+      grand_total += (Item.find(item_id).price - discounted_subtotal(item_id)) * quantity
+    end
+    # require "pry"; binding.pry
+    grand_total
   end
 end

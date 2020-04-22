@@ -43,7 +43,7 @@ RSpec.describe 'Cart Show Page' do
           expect(page).to have_css("img[src*='#{@hippo.image}']")
           expect(page).to have_link(@brian.name)
         end
-      end
+       end
 
       it "I can visit an empty cart page" do
         visit '/cart'
