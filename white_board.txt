@@ -20,3 +20,8 @@ percentage_off - amount as integer representing % discounted
 min_quantity - the quantity that specifies before the discount is triggered
 merchant_id - one(merchant) to many (discounts) relationship
 item_id - will all later if time permits or could be a joins table
+
+
+Need to figure out why after adding 3 items the discount goes away
+
+also why merchant is nil on same problem
