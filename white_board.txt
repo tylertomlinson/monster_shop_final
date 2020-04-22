@@ -12,8 +12,6 @@
 
 7. When there is a conflict between two discounts, the greater of the two will be applied.
 
-
-
 Discounts table setup:
 name - to have multiple types of discounts
 percentage_off - amount as integer representing % discounted
@@ -22,6 +20,13 @@ merchant_id - one(merchant) to many (discounts) relationship
 item_id - will all later if time permits or could be a joins table
 
 
+
+
+Addresses
+
+  Need to create new table and make it so the address info is on that table and not the user table
+  then can link the user_id to that Address table
+=======
 Need to figure out why after adding 3 items the discount goes away
 
 also why merchant is nil on same problem
