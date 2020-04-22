@@ -70,6 +70,8 @@ RSpec.describe Cart do
       @discount_3 = create(:discount, percent_off: 10, min_quantity: 3, merchant: @megan)
 
       expect(@cart.applicable_discounts(@ogre.id)).to eq(50)
+      expect(@cart.applicable_discounts(@ogre.id)).to_not eq(25)
+      expect(@cart.applicable_discounts(@ogre.id)).to_not eq(10)
     end
 
     it '.discounted_subtotal()' do
@@ -83,6 +85,9 @@ RSpec.describe Cart do
 
       expect(@cart.discounted_subtotal(@ogre.id)).to eq(10.0)
       expect(@cart.discounted_subtotal(@giant.id)).to eq(25.0)
+
+      expect(@cart.discounted_subtotal(@ogre.id)).to_not eq(20.00)
+      expect(@cart.discounted_subtotal(@giant.id)).to_not eq(50.00)
     end
 
     it '.grand_total_with_discount' do
