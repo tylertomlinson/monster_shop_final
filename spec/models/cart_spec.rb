@@ -66,8 +66,8 @@ RSpec.describe Cart do
 
     it '.applicable_discounts()' do
       @discount_1 = create(:discount, percent_off: 50, min_quantity: 1, merchant: @megan)
-      @discount_2 = create(:discount, percent_off: 25, min_quantity: 2, merchant: @megan)
-      @discount_3 = create(:discount, percent_off: 10, min_quantity: 3, merchant: @megan)
+      @discount_2 = create(:discount, percent_off: 25, min_quantity: 4, merchant: @megan)
+      @discount_3 = create(:discount, percent_off: 10, min_quantity: 5, merchant: @megan)
 
       expect(@cart.applicable_discounts(@ogre.id)).to eq(50)
       expect(@cart.applicable_discounts(@ogre.id)).to_not eq(25)
